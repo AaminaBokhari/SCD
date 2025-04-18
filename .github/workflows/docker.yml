@@ -21,26 +21,52 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and Push user-service
+      - name: Build and Push payment-services
         uses: docker/build-push-action@v5
         with:
-          context: ./user-service
-          file: ./user-service/Dockerfile
+          context: ./payment-services
+          file: ./payment-services/Dockerfile
           push: true
           tags: your-dockerhub-username/user-
 
-      - name: Build and Push order-service
+      - name: Build and Push order-services
         uses: docker/build-push-action@v5
         with:
-          context: ./order-service
-          file: ./order-service/Dockerfile
+          context: ./order-services
+          file: ./order-services/Dockerfile
           push: true
           tags: your-dockerhub-username/order-
 
-      - name: Build and Push product-service
+      - name: Build and Push menu-services
         uses: docker/build-push-action@v5
         with:
-          context: ./product-service
-          file: ./product-service/Dockerfile
+          context: ./menu-services
+          file: ./menu-services/Dockerfile
+          push: true
+          tags: your-dockerhub-username/
+
+
+      - name: Build and Push inventory-services
+        uses: docker/build-push-action@v5
+        with:
+          context: ./inventory-services
+          file: ./inventory-services/Dockerfile
+          push: true
+          tags: your-dockerhub-username/
+
+
+         - name: Build and Push customer-services
+        uses: docker/build-push-action@v5
+        with:
+          context: ./customer-services
+          file: ./customer-services/Dockerfile
+          push: true
+          tags: your-dockerhub-username/
+
+- name: Build and Push api-sgateway
+        uses: docker/build-push-action@v5
+        with:
+          context: ./api-gateway
+          file: ./api-gateway/Dockerfile
           push: true
           tags: your-dockerhub-username/
